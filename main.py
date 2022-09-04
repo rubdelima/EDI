@@ -1,3 +1,5 @@
+from xml.dom import minidom;
+
 from escolhas import *
 
 class Linha:
@@ -96,22 +98,33 @@ def linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs,
     linha.inserir(horaage,122,126)
     return linha.getLinha()
 
-def OCOOREN(remetente, destinatario, data, cnpj, serienota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
+def OCOOREN(remetente, destinatario, data, hora, cnpj, serienota,numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
     doc = []
     doc.append(linha1(remetente, destinatario, data, hora))
     doc.append(linha2(data, hora))
     doc.append(linha3(cnpj, remetente))
-    doc.append(linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage ))
+    doc.append(linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage))
     return doc
 
 def DOCCOB():
-    pass
+    print('hi')
 
+def imprimir(doc):
+    nome = ''.join(doc[0][83:95])
+    nome+='.txt'
+    with open(nome, "w") as saida:
+        for linha in doc:
+            string = ''
+            for car in linha:
+                car = str(car)
+                string += car
+            print(string, file=saida)
+'''
 
 remetente = input('Insira o remetente: ')
 destinatario = input('Insira o destinatario: ')
 data = input('Insira a data: ')
-hora = (input('Insira hora: '))
+hora = input('Insira hora: ')
 cnpj = input('Insira o CNPJ: ')
 serienota = input('Insira a série da nota fiscal:')
 numeronota = input('Insira o número da nota fiscal:') 
@@ -126,9 +139,28 @@ txt = input('Insira o texto adicional:')
 dataage = input('Insira a data de agendamento')
 horaage = input('Insira a hora de agendamento')
 
-doc_ocooren = OCOOREN(remetente, destinatario, data, cnpj, serienota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage,horaage)
+doc_ocooren = OCOOREN(remetente, destinatario, data,hora, cnpj, serienota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage,horaage)
 print_doc(doc_ocooren)
 
-doc2 = []
+local_arch = input("Insira o local do arquivo: ")
+'''
+
+local_arch = "CTe26220846811890000112570010000000301684316300-procCte.xml"
+
+with open(local_arch, 'r', encoding='utf-8') as data:
+    xml = minidom.parse(data)
+    try:
+        cnpj = xml.getElementsByTagName("CNPJ")
+        local2 = cnpj[0].firstChild.data
+        local3 = cnpj[1].firstChild.data
+        print(local2)
+        print(local3)
+        
+    except:
+        pass
+
+    print('lista')
+
+print('ok')
 
 
