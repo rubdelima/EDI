@@ -59,7 +59,9 @@ lista_ocorr = ['Processo de Transporte já Iniciado',
                     'Quebra do Veiculo de Entrega',
                     'Cliente sem Verba para Pagar o Frete']
 
-
+lista_ocorr2 = ['Devolução/recusa total',
+                'Devolução/recusa parcial',
+                '3']
 
 
 def show_list(lista):
@@ -82,3 +84,13 @@ def escolher():
             except:
                 print("Valor não identificado")
 
+def escolher2():
+    print('Esolha a ocorrência:')
+    show_list(lista_ocorr)
+    try:
+        ent = int(input('O que houve? '))
+        if ent > 0 and ent < 3:
+            return ent+1
+        print("Valor não identificado")
+    except:
+        print("Valor não identificado")
