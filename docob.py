@@ -88,12 +88,12 @@ class DOCOB:
         linha.inserir(valormercadoria,29,44)
         linha.inserir(cnpjemissor,44,58)
         self.doc.append(linha.getLinha())
-     def linha7(quantidadetotaldoccobranca,self,valortotaldoccobranca):
+    def linha7(quantidadetotaldoccobranca,self,valortotaldoccobranca):
         linha = Linha(170)
         linha.inserir('355',0,3)
         linha.inserir(quantidadetotaldoccobranca,3,7)
         linha.inserir(valortotaldoccobranca,7,22)
         self.doc.append(linha.getLinha())
-     def getDoc(self):
+    def getDoc(self):
             return self.doc
 '''Eu não sei o que é filial emissora do documento vulgo filialemissor'''

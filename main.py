@@ -1,14 +1,12 @@
-from pydoc import doc
 from xml.dom import minidom;
 from math import *
 from escolhas import *
 from ocoren import OCOREN
-from linha import Linha
 
 def print_doc(doc):
     for item in doc:
         print_list(item)
-        
+
 def print_list(lista):
     string = ''
     for i in lista:

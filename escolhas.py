@@ -62,7 +62,10 @@ lista_ocorr = ['Processo de Transporte já Iniciado',
 lista_ocorr2 = ['Devolução/recusa total',
                 'Devolução/recusa parcial',
                 '3']
-
+lista_cobranca = ['0',
+                    '1']
+lista_acao_doc = ['I',
+                         'E']
 
 def show_list(lista):
     for i in range(len(lista)):
@@ -87,6 +90,26 @@ def escolher():
 def escolher2():
     print('Esolha a ocorrência:')
     show_list(lista_ocorr)
+    try:
+        ent = int(input('O que houve? '))
+        if ent > 0 and ent < 3:
+            return ent+1
+        print("Valor não identificado")
+    except:
+        print("Valor não identificado")
+def escolher3():
+    print('Esolha o tipo do documento de cobrança:')
+    show_list(lista_cobranca)
+    try:
+        ent = int(input('O que houve? '))
+        if ent > 0 and ent < 3:
+            return ent+1
+        print("Valor não identificado")
+    except:
+        print("Valor não identificado")
+def escolher4():
+    print('Deseja incluir ou excluir/cancelar:')
+    show_list(lista_acao_doc)
     try:
         ent = int(input('O que houve? '))
         if ent > 0 and ent < 3:
