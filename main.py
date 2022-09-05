@@ -1,43 +1,14 @@
+from pydoc import doc
 from xml.dom import minidom;
-
+from math import *
 from escolhas import *
-
-class Linha:
-    def __init__(self,tamanho):
-        self.lista = create_list(tamanho)
-
-    def inserir(self, texto, inicio, final):
-        j = 0
-        for i in range(inicio, final):
-            try:
-                self.lista[i] = texto[j]
-                j += 1
-            except:
-                break
-    
-    def inserir_pos(self, pos, item):
-        self.lista[pos] = item
-    
-    def print(self):
-        string = ''
-        for i in self.lista:
-            i = str(i)
-            string += i
-        print (string)
-    
-    def getLinha(self):
-        return self.lista
+from ocoren import OCOREN
+from linha import Linha
 
 def print_doc(doc):
     for item in doc:
         print_list(item)
-
-def create_list(tamanho):
-    lista = []
-    for i in range(tamanho):
-        lista.append(' ')
-    return lista
-
+        
 def print_list(lista):
     string = ''
     for i in lista:
@@ -54,60 +25,9 @@ def inserir(lista, texto, inicio, final):
         except:
             break
 
-def linha1(remetente, destinatario, data, hora):
-    linha = Linha(120)
-    linha.inserir('000',0,3)
-    linha.inserir(remetente,3,38 )
-    linha.inserir(destinatario, 38, 73 )
-    linha.inserir(data, 73, 79)
-    linha.inserir(hora, 79, 83)
-    linha.inserir('OCO', 83, 86)
-    linha.inserir(data, 86, 90)
-    linha.inserir(hora, 90, 94)
-    linha.inserir_pos(94,0)
-    return linha.getLinha()
 
-def linha2(data, hora):
-    linha=Linha(120)
-    linha.inserir('340',0,3)
-    linha.inserir('OCORR',3,8)
-    linha.inserir(data,8,12 )
-    linha.inserir(hora,12,16)
-    linha.inserir_pos(16,1)
-    return linha.getLinha()
 
-def linha3(cnpj, remetente):
-    linha = Linha(120)
-    linha.inserir('341',0,3)
-    linha.inserir(cnpj,3,17)
-    linha.inserir(remetente, 17,57)
-    return linha.getLinha()
 
-def linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
-    linha = Linha(120)
-    linha.inserir('342',0,3)
-    linha.inserir(cnpj,3,17)
-    linha.inserir(serienota, 17, 20)
-    linha.inserir(numeronota, 20,28)
-    linha.inserir(ocorrencia,28,30)
-    linha.inserir(dataoco,30,38)
-    linha.inserir(horaoco,38,42)
-    linha.inserir(codigoobs,42,44)
-    linha.inserir(txt,44,114)
-    linha.inserir(dataage,114,122)
-    linha.inserir(horaage,122,126)
-    return linha.getLinha()
-
-def OCOOREN(remetente, destinatario, data, hora, cnpj, serienota,numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
-    doc = []
-    doc.append(linha1(remetente, destinatario, data, hora))
-    doc.append(linha2(data, hora))
-    doc.append(linha3(cnpj, remetente))
-    doc.append(linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage))
-    return doc
-
-def DOCCOB():
-    print('hi')
 
 def imprimir(doc):
     nome = ''.join(doc[0][83:95])
@@ -119,7 +39,25 @@ def imprimir(doc):
                 car = str(car)
                 string += car
             print(string, file=saida)
+
+def getTag(string, local):
+    lista = []
+    with open(local, 'r', encoding='utf-8') as data:
+        xml = minidom.parse(data)
+        try:
+            element = xml.getElementsByTagName(string)
+            try:
+                for i in range(100):
+                    lista.append(element[i].firstChild.data)
+            except:
+                return lista
+        except:
+            return lista
+
+
+
 '''
+
 
 remetente = input('Insira o remetente: ')
 destinatario = input('Insira o destinatario: ')
@@ -147,20 +85,13 @@ local_arch = input("Insira o local do arquivo: ")
 
 local_arch = "CTe26220846811890000112570010000000301684316300-procCte.xml"
 
-with open(local_arch, 'r', encoding='utf-8') as data:
-    xml = minidom.parse(data)
-    try:
-        cnpj = xml.getElementsByTagName("CNPJ")
-        local2 = cnpj[0].firstChild.data
-        local3 = cnpj[1].firstChild.data
-        print(local2)
-        print(local3)
-        
-    except:
-        pass
+lista = getTag("xNome", local_arch)
 
-    print('lista')
+remetente = getTag("xNome", local_arch)[0]
+print(lista)
+print(remetente)
 
-print('ok')
+
+
 
 
