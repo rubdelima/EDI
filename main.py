@@ -1,18 +1,22 @@
-from xml.dom import minidom;
+from xml.dom import minidom
 from math import *
 from escolhas import *
 from ocoren import OCOREN
+from xmlreturn import *
+
 
 def print_doc(doc):
     for item in doc:
         print_list(item)
+
 
 def print_list(lista):
     string = ''
     for i in lista:
         i = str(i)
         string += i
-    print (string)
+    print(string)
+
 
 def inserir(lista, texto, inicio, final):
     j = 0
@@ -24,12 +28,9 @@ def inserir(lista, texto, inicio, final):
             break
 
 
-
-
-
 def imprimir(doc):
     nome = ''.join(doc[0][83:95])
-    nome+='.txt'
+    nome += '.txt'
     with open(nome, "w") as saida:
         for linha in doc:
             string = ''
@@ -38,20 +39,46 @@ def imprimir(doc):
                 string += car
             print(string, file=saida)
 
-def getTag(string, local):
-    lista = []
-    with open(local, 'r', encoding='utf-8') as data:
-        xml = minidom.parse(data)
-        try:
-            element = xml.getElementsByTagName(string)
-            try:
-                for i in range(100):
-                    lista.append(element[i].firstChild.data)
-            except:
-                return lista
-        except:
-            return lista
 
+
+'''
+## Itens do OCOOREN ##
+remetente
+destinatario
+data
+hora
+cnpj
+serienota
+numeronota
+ocorrencia
+dataoco
+horaoco
+codigoobs
+txt
+dataage
+horaage
+'''
+'''
+## Itens do DOCOB ##
+remetente
+destinatario
+data
+hora
+cnpj
+serienota
+numeronota
+ocorrencia
+dataoco
+horaoco
+codigoobs
+txt
+dataage
+horaage
+'''
+
+
+
+local_arch = "CTe26220846811890000112570010000000301684316300-procCte.xml"
 
 
 '''
@@ -81,15 +108,7 @@ print_doc(doc_ocooren)
 local_arch = input("Insira o local do arquivo: ")
 '''
 
-local_arch = "CTe26220846811890000112570010000000301684316300-procCte.xml"
 
 lista = getTag("xNome", local_arch)
 
-remetente = getTag("xNome", local_arch)[0]
 print(lista)
-print(remetente)
-
-
-
-
-
