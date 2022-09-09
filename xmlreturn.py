@@ -40,14 +40,14 @@ def data_hora(string):
 def getNfe():
     pass
 
+lista_de_txt = ['Saída para Entrega', 'Entrega Realizada', 'Entrega não Realizada']
 
-local_arch = "CTe26220846811890000112570010000000301684316300-procCte.xml"
-local_arch2 = "CTe26220746811890000112570010000000051560636218-procCte.xml"
-lista_arch = getItens('.xml')
-print_itens(lista_arch)
+local_arch = "CTe26220746811890000112570010000000051560636218-procCte.xml"
+#lista_arch = getItens('.xml')
+#print_itens(lista_arch)
 
 
-rem = (getTag('chave', local_arch))
+rem = (getTag('cCT', local_arch))
 print_itens(rem)
 print(rem)
 '''
@@ -55,22 +55,22 @@ print(rem)
 nome_remetente = (getTag('xNome', local_arch))[1] #ou sera da transportadora?
 nome_destinatario = (getTag('xNome', local_arch))[3]
 data_emi_doc, hora_emi_doc = data_hora((getTag('dhEmi', local_arch))[0])
-cnpj_remetente = #ou sera da transportadora?
-serienota = 
-numeronota
-ocorrencia
-dataoco
-horaoco
-codigoobs
-txt
-dataage
+cnpj_remetente = (getTag('CNPJ', local_arch))[1]
+serienota = (getTag('serie', local_arch))[0]
+numeronota = (getTag('cCT', local_arch))[0]
+ocorrencia = escolher1
+dataoco = (getTag('dhEmi', local_arch))
+horaoco = (getTag('dhEmi', local_arch))
+codigoobs = escolher2
+txt = lista_de_txt
+dataage = 
 horaage
 '''
 
 '''
 DOCOB
-remetente
-destinatario
+remetente = (getTag('xNome', local_arch))[1] #ou sera da transportadora?
+destinatario = (getTag('xNome', local_arch))[3]
 data
 hora
 cnpj
@@ -83,4 +83,37 @@ codigoobs
 txt
 dataage
 horaage
-'''
+filialemissor
+tipodoccobranca
+seriecobranca
+numerocobranca
+dataemi
+datavenci
+valordoccobranca
+tipocobranca
+valortotalicms
+valorjurosdiatraso
+datalimitepagamentodesconto
+valordesconto
+indetificacaoagentecobranca
+numeroagenciabancaria
+digitoverificadornumdaagencia
+numerocontacorrente
+digitoverificadorcontacorrente
+acaododocumento
+serieconhecimento
+numeroconhecimento
+valorfrete
+dataemissaoconhecimento
+cnpjremetente
+cnpjdestinatario
+cnpjemissorconhecimento
+serie
+numeronotafiscal
+dataemi
+pesonotaf
+valormercadoria
+cnpjemissor
+quantidadetotaldoccobranca
+valortotaldoccobranca
+''' 
