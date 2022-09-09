@@ -47,12 +47,12 @@ local_arch = "CTe26220746811890000112570010000000051560636218-procCte.xml"
 #print_itens(lista_arch)
 
 
-rem = (getTag('cCT', local_arch))
+rem = (getTag('CNPJ', local_arch))
 print_itens(rem)
 print(rem)
 '''
 ## ocoren ##
-nome_remetente = (getTag('xNome', local_arch))[1] #ou sera da transportadora?
+nome_remetente = (getTag('xNome', local_arch))[1]
 nome_destinatario = (getTag('xNome', local_arch))[3]
 data_emi_doc, hora_emi_doc = data_hora((getTag('dhEmi', local_arch))[0])
 cnpj_remetente = (getTag('CNPJ', local_arch))[1]
