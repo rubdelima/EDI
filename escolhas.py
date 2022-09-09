@@ -59,13 +59,16 @@ lista_ocorr = ['Processo de Transporte já Iniciado',
                     'Quebra do Veiculo de Entrega',
                     'Cliente sem Verba para Pagar o Frete']
 
-lista_ocorr2 = ['Devolução/recusa total',
-                'Devolução/recusa parcial',
-                '3']
-lista_cobranca = ['0',
-                    '1']
-lista_acao_doc = ['I',
-                         'E']
+lista_ocorr2 = ['00',
+                '01',
+                '02',
+                '03']
+
+lista_cobranca = ['0','1']
+lista_acao_doc = ['I','E']
+
+lista_de_txt = ['Saída para Entrega', 'Entrega Realizada', 'Entrega não Realizada']
+
 
 def show_list(lista):
     for i in range(len(lista)):
@@ -97,6 +100,8 @@ def escolher2():
         print("Valor não identificado")
     except:
         print("Valor não identificado")
+
+
 def escolher3():
     print('Esolha o tipo do documento de cobrança:')
     show_list(lista_cobranca)
@@ -107,6 +112,8 @@ def escolher3():
         print("Valor não identificado")
     except:
         print("Valor não identificado")
+
+
 def escolher4():
     print('Deseja incluir ou excluir/cancelar:')
     show_list(lista_acao_doc)
@@ -117,3 +124,16 @@ def escolher4():
         print("Valor não identificado")
     except:
         print("Valor não identificado")
+
+
+def escolher3(lista=lista_de_txt):
+    while 1:
+        print('Qual ocorrência ocorreu?')
+        show_list(lista)
+        try:
+            escolha = int(input())
+            return lista[escolha]
+        except:
+            print('Houve algum erro, tente novamente')
+
+

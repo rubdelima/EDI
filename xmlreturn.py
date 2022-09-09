@@ -1,5 +1,7 @@
 from xml.dom import minidom
 import os
+from escolhas import *
+from datetime import datetime
 
 
 def getItens(parametro):
@@ -40,7 +42,6 @@ def data_hora(string):
 def getNfe():
     pass
 
-lista_de_txt = ['Saída para Entrega', 'Entrega Realizada', 'Entrega não Realizada']
 
 local_arch = "CTe26220746811890000112570010000000051560636218-procCte.xml"
 #lista_arch = getItens('.xml')
@@ -50,7 +51,7 @@ local_arch = "CTe26220746811890000112570010000000051560636218-procCte.xml"
 rem = (getTag('CNPJ', local_arch))
 print_itens(rem)
 print(rem)
-'''
+
 ## ocoren ##
 nome_remetente = (getTag('xNome', local_arch))[1]
 nome_destinatario = (getTag('xNome', local_arch))[3]
@@ -58,21 +59,23 @@ data_emi_doc, hora_emi_doc = data_hora((getTag('dhEmi', local_arch))[0])
 cnpj_remetente = (getTag('CNPJ', local_arch))[1]
 serienota = (getTag('serie', local_arch))[0]
 numeronota = (getTag('cCT', local_arch))[0]
-ocorrencia = escolher1
+ocorrencia = escolher()
 dataoco = (getTag('dhEmi', local_arch))
 horaoco = (getTag('dhEmi', local_arch))
-codigoobs = escolher2
-txt = lista_de_txt
-dataage = 
-horaage
-'''
+codigoobs = escolher2()
+txt = escolher3()
+dataage = data_emi_doc, hora_emi_doc = data_hora((getTag('dhEmi', local_arch))[0])
+horaage = data_emi_doc, hora_emi_doc = data_hora((getTag('dhEmi', local_arch))[0])
+
+
+
 
 '''
 DOCOB
-remetente = (getTag('xNome', local_arch))[1] #ou sera da transportadora?
+remetente = (getTag('xNome', local_arch))[1] 
 destinatario = (getTag('xNome', local_arch))[3]
-data
-hora
+data = 
+hora =
 cnpj
 serienota
 numeronota
