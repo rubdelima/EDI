@@ -1,45 +1,4 @@
-from xml.dom import minidom
-from math import *
-from escolhas import *
-from ocoren import OCOREN
-from xmlreturn import *
-
-
-def print_doc(doc):
-    for item in doc:
-        print_list(item)
-
-
-def print_list(lista):
-    string = ''
-    for i in lista:
-        i = str(i)
-        string += i
-    print(string)
-
-
-def inserir(lista, texto, inicio, final):
-    j = 0
-    for i in range(inicio, final):
-        try:
-            lista[i] = texto[j]
-            j += 1
-        except:
-            break
-
-
-def imprimir(doc):
-    nome = ''.join(doc[0][83:95])
-    nome += '.txt'
-    with open(nome, "w") as saida:
-        for linha in doc:
-            string = ''
-            for car in linha:
-                car = str(car)
-                string += car
-            print(string, file=saida)
-
-
+from funcoes import *
 
 '''
 ## Itens do OCOOREN ##

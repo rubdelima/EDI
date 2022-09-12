@@ -1,16 +1,17 @@
 from linha import Linha
-from escolhas import *
+from funcoes import * 
 
 class OCOREN:
-    def __init__(self,remetente, destinatario, data, hora, cnpj, serienota,numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
+    def __init__(self,remetente, destinatario, data, hora, cnpj, serienota,numeronota, dataoco, horaoco,):
         self.doc = []
         self.linha1(remetente, destinatario, data, hora)
         self.linha2(data, hora)
         self.linha3(cnpj, remetente)
-        continuar = True
-        while continuar: 
-            self.linha4(cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage)
-            continuar = int(input('Deseja adicionar mais uma linha? 0/1'))
+        for i in range(2):
+            self.linha4(cnpj, serienota, numeronota, dataoco, horaoco, i,)
+            dataoco, horaoco = randon_data(dataoco, horaoco)
+            
+            
 
     def linha1(self,remetente, destinatario, data, hora):
         linha = Linha(120)
@@ -41,20 +42,28 @@ class OCOREN:
         linha.inserir(remetente, 17,57)
         self.doc.append(linha.getLinha())
 
-    def linha4(self,cnpj, serienota, numeronota, ocorrencia, dataoco, horaoco, codigoobs, txt, dataage, horaage):
+    def linha4(self,cnpj, serienota, numeronota, dataoco, horaoco, vez):
         linha = Linha(120)
         linha.inserir('342',0,3)
         linha.inserir(cnpj,3,17)
         linha.inserir(serienota, 17, 20)
         linha.inserir(numeronota, 20,28)
+        ocorrencia = escolher(True, vez)
         linha.inserir(ocorrencia,28,30)
         linha.inserir(dataoco,30,38)
         linha.inserir(horaoco,38,42)
-        linha.inserir(codigoobs,42,44)
+        codigo_obs = escolher2(True, False)
+        linha.inserir(codigo_obs,42,44)
+        txt = escolher5(dataoco, horaoco, True, vez)
         linha.inserir(txt,44,114)
-        linha.inserir(dataage,114,122)
-        linha.inserir(horaage,122,126)
+        dataoco = dataoco[0:4] + dataoco[6:]
+        linha.inserir(dataoco,114,122)
+        linha.inserir(horaoco,122,126)
         self.doc.append(linha.getLinha())
+        if vez ==1: self.swap()
+    
+    def swap(self):
+        self.doc[len(self.doc)-1], self.doc[len(self.doc)-2] = self.doc[len(self.doc)-2], self.doc[len(self.doc)-1]
     
     def getDoc(self):
             return self.doc

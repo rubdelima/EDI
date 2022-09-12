@@ -2,7 +2,7 @@ class Linha:
     def __init__(self,tamanho):
         self.lista = self.create_list(tamanho)
     
-    def create_list(tamanho):
+    def create_list(sel,tamanho):
         lista = []
         for i in range(tamanho):
             lista.append(' ')
@@ -29,3 +29,5 @@ class Linha:
     
     def getLinha(self):
         return self.lista
+    
+
