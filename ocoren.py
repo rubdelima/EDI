@@ -2,13 +2,13 @@ from linha import Linha
 from funcoes import * 
 
 class OCOREN:
-    def __init__(self,remetente, destinatario, data, hora, cnpj, serienota,numeronota, dataoco, horaoco,):
+    def __init__(self,remetente, destinatario, transportadora, data, hora, cnpj_emissor, cnpj_transp, serienota,numeronota, dataoco, horaoco,):
         self.doc = []
         self.linha1(remetente, destinatario, data, hora)
         self.linha2(data, hora)
-        self.linha3(cnpj, remetente)
+        self.linha3(cnpj_transp, transportadora)
         for i in range(2):
-            self.linha4(cnpj, serienota, numeronota, dataoco, horaoco, i,)
+            self.linha4(cnpj_emissor, serienota, numeronota, dataoco, horaoco, i,)
             dataoco, horaoco = randon_data(dataoco, horaoco)
             
             
@@ -35,11 +35,11 @@ class OCOREN:
         linha.inserir_pos(16,1)
         self.doc.append(linha.getLinha())
 
-    def linha3(self,cnpj, remetente):
+    def linha3(self,cnpj, transportadora):
         linha = Linha(120)
         linha.inserir('341',0,3)
         linha.inserir(cnpj,3,17)
-        linha.inserir(remetente, 17,57)
+        linha.inserir(transportadora, 17,57)
         self.doc.append(linha.getLinha())
 
     def linha4(self,cnpj, serienota, numeronota, dataoco, horaoco, vez):
