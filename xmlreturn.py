@@ -33,9 +33,20 @@ def data_hora_aut():
     hora = hora.split(':')
     hora = f'{hora[0]}{hora[1]}'
     return data, hora
+def print_posicao(lista, item):
+    for i in range(len(lista)):
+        if lista[i] == item:
+            print(f'Item {i+1} de {len(lista)} concluído')
+def print_txtReturn(lista, item):
+    item = item[0:-4] + 'TXTRETURN.txt'
+    with open(item, "w") as saida:
+        for i in lista:
+            print(i, file=saida)
+    
 
 arquivos = getItens('.xml')
 hora_emi_doc = '0000'
+
 for local_arch in arquivos:
     d, h = data_hora_aut()
     if h == hora_emi_doc:
@@ -57,21 +68,33 @@ for local_arch in arquivos:
     '''
 
 
-    '''
+
     ## ocoren ##
+    lista_txt_return = []
     nome_remetente = getTag('xNome', local_arch)[1]
+    lista_de_txt.append(nome_remetente)
     nome_destinatario = (getTag('xNome', local_arch))[3]
+    lista_de_txt.append(nome_destinatario)
     data_emi_doc, hora_emi_doc = data_hora_aut()
     cnpj_remetente = (getTag('CNPJ', local_arch))[1]
+    lista_de_txt.append(cnpj_remetente)
     cnpj_transp = '46811890000112'
     nome_transportadora = 'CSRG TRANSPORTES LTDA'
     serienota = (getTag('serie', local_arch))[0]
+    lista_de_txt.append(serienota)
     numeronota = (getTag('cCT', local_arch))[0]
+    lista_de_txt.append(lista_de_txt)
     ocorrencia = escolher(True)
     dataoco, horaoco= data_hora_xml(getTag('dhEmi', local_arch)[0])
     oco = OCOREN(nome_remetente, nome_destinatario, nome_transportadora, data_emi_doc, hora_emi_doc, cnpj_remetente, cnpj_transp, serienota,numeronota, dataoco, horaoco)
     imprimir(oco.getDoc(), local_arch)
-    '''
+    valor_frete = (getTag('vRec', local_arch))[0]
+    lista_de_txt.append(valor_frete)
+    print_txtReturn(lista_de_txt, local_arch)
+    print_posicao(arquivos, local_arch)
+    
+
+print('TUDO PRONTO')
 
 
 '''
