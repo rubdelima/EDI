@@ -61,6 +61,11 @@ class OCOREN:
         linha.inserir(horaoco,122,126)
         self.doc.append(linha.getLinha())
         if vez ==1: self.swap()
+    def linha5(self):
+        linha = Linha(120)
+        linha.inserir('343')
+        self.doc.append(linha.getLinha())
+        
     
     def swap(self):
         self.doc[len(self.doc)-1], self.doc[len(self.doc)-2] = self.doc[len(self.doc)-2], self.doc[len(self.doc)-1]
