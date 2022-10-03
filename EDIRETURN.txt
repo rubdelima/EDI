@@ -1,0 +1,26 @@
+ITEM 0
+serienota 1
+numeronota 000506
+dataoco 17082022
+horaoco 1047
+pesonotaf 43.0000
+valor_frete 515.26
+valor_carga 64407.18
+cte 0150
+nfe 000506
+nome_destinatario CPX DISTRIBUIDORA S.A
+dataEmissaoNF 14072022
+__END__
+ITEM 1
+serienota 1
+numeronota 001089
+dataoco 17082022
+horaoco 1223
+pesonotaf 39.0000
+valor_frete 296.66
+valor_carga 37082.27
+cte 0168
+nfe 001089
+nome_destinatario CPX DISTRIBUIDORA S.A  RECIFE/PE CURADO
+dataEmissaoNF 22012022
+__END__
